@@ -1,14 +1,13 @@
 # cymon-python
 Python library for Cymon.io APIs
 
-***
-###Using the library:
-1. Clone repo and CD into the cloned directory  
-2. Open a python interpreter ( eg. type python in cmd)  
-3. Type " from cymon import Cymon"  
-3. Setup your authentication key :  
-api=cymon('YOUR KEY GOES HERE')  
-
-5.Done. Call any function you want ( eg. api.ip_events(8.8.8.8))  
-Example output:
-![Imgur](http://i.imgur.com/FCj2iZg.png)
+Example:  
+```
+from cymon import Cymon
+api=cymon('YOUR KEY GOES HERE')
+api.ip_events(8.8.8.8)
+```
+Output:
+```
+{u'updated': u'2015-05-21T19:21:29', u'addr': u'8.8.8.8', u'created': u'2015-03-23T12:03:42', u'timeline': u'https://cymon.io/api/nexus/v1/ip/8.8.8.8/timeline', u'sources': [u'malwr.com', u'virustotal.com', u'urlquery.net', u'google safebrowsing'], u'urls': u'https://cymon.io/api/nexus/v1/ip/8.8.8.8/urls', u'domains': u'https://cymon.io/api/nexus/v1/ip/8.8.8.8/domains', u'events': u'https://cymon.io/api/nexus/v1/ip/8.8.8.8/events'}
+```
