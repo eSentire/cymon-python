@@ -64,6 +64,11 @@ class Cymon(object):
     def blacklist_ip(self, tag):
         r = self.get('/blacklist/ip/' + tag)
         return json.loads(r.text)
+         
+     def blacklist_domain(self, tag):
+        r = self.get('/blacklist/domain/' + tag)
+        return json.loads(r.text)
+
 
 
 
