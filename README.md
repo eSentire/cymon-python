@@ -4,8 +4,8 @@ Python library for Cymon.io APIs
 Example:  
 ```
 from cymon import Cymon
-api=cymon('YOUR KEY GOES HERE')
-api.ip_events(8.8.8.8)
+api=Cymon('YOUR KEY GOES HERE')
+api.ip_events('8.8.8.8')
 ```
 Output:
 ```  
