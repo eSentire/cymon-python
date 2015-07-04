@@ -1,19 +1,17 @@
-from copy import copy
 import json
-import logging
-
 import requests
 
 class Cymon(object):
 
-    def __init__(self, auth_token, endpoint='https://cymon.io/api/nexus/v1'):
+    def __init__(self, auth_token=None, endpoint='https://cymon.io/api/nexus/v1'):
         self.endpoint = endpoint
         self.session = requests.Session()
         self.session.headers = {
             'content-type': 'application/json',
             'accept': 'application/json',
-            'Authorization': 'Token %s' %auth_token
         }
+        if auth_token:
+            self.session.headers.update({'Authorization': 'Token %s' %auth_token})
 
     def get(self, method, params=None):
         r = self.session.get(self.endpoint + method, params=params)
@@ -37,7 +35,7 @@ class Cymon(object):
         r = self.get('/ip/' + ip_addr + '/domains')
         return json.loads(r.text)
 
-    def ip_url(self, ip_addr):
+    def ip_urls(self, ip_addr):
         r = self.get('/ip/' + ip_addr + '/urls')
         return json.loads(r.text)
 
@@ -53,33 +51,11 @@ class Cymon(object):
         r = self.get('/domain/' + name + '/events')
         return json.loads(r.text)
 
-    def url_lookup(self, url):
-        r = self.get('/url/' + url)
-        return json.loads(r.text)
-
-    def url_location(self, location):
+    def url_lookup(self, location):
         r = self.get('/url/' + location)
         return json.loads(r.text)
 
-    def blacklist_ip(self, tag):
-        r = self.get('/blacklist/ip/' + tag)
+    def ip_blacklist(self, tag, days=1):
+        ''' supported tags: malware, botnet, spam, phishing, dnsbl, blacklist '''
+        r = self.get('/blacklist/ip/' + tag + '/?days=%d' %(days))
         return json.loads(r.text)
-         
-     def blacklist_domain(self, tag):
-        r = self.get('/blacklist/domain/' + tag)
-        return json.loads(r.text)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
