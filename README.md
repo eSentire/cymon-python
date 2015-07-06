@@ -7,12 +7,22 @@ Python library for [Cymon.io](https://cymon.io/) APIs
 pip install cymon
 ```
 
-## Example
+## Examples
+
+Without API authentication:
 
 ```
 from cymon import Cymon
 api = Cymon()
 api.ip_events('185.27.134.165')
+```
+
+With API authentication:
+
+```
+from cymon import Cymon
+api = Cymon('A4HD6N0V3J357GM7D189V17Y0S')
+api.ip_domains('185.27.134.165')
 ```
 
 ## Output
