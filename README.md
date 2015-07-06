@@ -1,7 +1,13 @@
 # cymon-python
-Python library for Cymon.io APIs
+Python library for [Cymon.io](https://cymon.io/) APIs
 
-Example:
+## Install
+
+```
+pip install cymon
+```
+
+## Example
 
 ```
 from cymon import Cymon
@@ -9,7 +15,7 @@ api = Cymon()
 api.ip_events('185.27.134.165')
 ```
 
-Output:
+## Output
 
 ```  
 {u'count': 4,
@@ -40,3 +46,14 @@ Output:
    u'title': u'Malware reported by AlienVault Reputation System',
    u'updated': u'2015-02-23T14:32:10'}]}
 ```
+
+## Available methods
+
++ ip_lookup('x.x.x.x')
++ ip_events('x.x.x.x')
++ ip_domains('x.x.x.x')
++ ip_urls('x.x.x.x')
++ ip_timeline('x.x.x.x')
++ ip_blacklist(tag='malware')
++ domain_lookup()
++ url_lookup()
