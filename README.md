@@ -59,11 +59,12 @@ api.ip_domains('185.27.134.165')
 
 ## Available methods
 
-+ ip_lookup('x.x.x.x')
-+ ip_events('x.x.x.x')
-+ ip_domains('x.x.x.x')
-+ ip_urls('x.x.x.x')
-+ ip_timeline('x.x.x.x')
-+ ip_blacklist(tag='malware')
++ ip_lookup()
++ ip_events()
++ ip_domains()
++ ip_urls()
++ ip_timeline()
++ ip_blacklist()
 + domain_lookup()
++ domain_blacklist()
 + url_lookup()

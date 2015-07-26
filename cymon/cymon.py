@@ -1,5 +1,6 @@
 import json
 import requests
+from urllib import quote_plus
 
 class Cymon(object):
 
@@ -11,7 +12,7 @@ class Cymon(object):
             'accept': 'application/json',
         }
         if auth_token:
-            self.session.headers.update({'Authorization': 'Token %s' %auth_token})
+            self.session.headers.update({'Authorization': 'Token {0}'.format(auth_token)})
 
     def get(self, method, params=None):
         r = self.session.get(self.endpoint + method, params=params)
@@ -47,15 +48,16 @@ class Cymon(object):
         r = self.get('/domain/' + name)
         return json.loads(r.text)
 
-    def domain_events(self, name):
-        r = self.get('/domain/' + name + '/events')
-        return json.loads(r.text)
-
     def url_lookup(self, location):
-        r = self.get('/url/' + location)
+        r = self.get('/url/' + quote_plus(location))
         return json.loads(r.text)
 
     def ip_blacklist(self, tag, days=1):
         ''' supported tags: malware, botnet, spam, phishing, dnsbl, blacklist '''
         r = self.get('/blacklist/ip/' + tag + '/?days=%d' %(days))
+        return json.loads(r.text)
+
+    def domain_blacklist(self, tag, days=1):
+        ''' supported tags: malware, botnet, spam, phishing, dnsbl, blacklist '''
+        r = self.get('/blacklist/domain/' + tag + '/?days=%d' %(days))
         return json.loads(r.text)
